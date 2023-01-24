@@ -201,3 +201,5 @@ if __name__ == '__main__' :
     level=LG.INFO,
     format='%(levelname)-8s: [%(name)s] %(message)s'
   )
+
+  main()
