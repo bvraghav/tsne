@@ -36,7 +36,7 @@ has-env			 = $(shell 	\
 default: run-tsne
 
 create-conda-env :
-	$(base-conda) env create -f ${CONDA_YML}
+	$(base-conda) env create -f ${CONDA_YML} -n $(conda-env-name)
 
 run-tsne :
 ifeq ($(has-env),)
@@ -54,6 +54,15 @@ endif
 	    --n-steps		${N_STEPS}	 	\
 	    --random-seed	${RANDOM_SEED}	 	\
 	    $(and ${FORCE_WRITE},--force-write)	 	\
+
+
+
+
+
+
+## ----------------------------------------------------
+## DEBUG
+## ----------------------------------------------------
 
 has-env :
 	$(base-conda) env list 		\
