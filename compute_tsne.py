@@ -46,7 +46,7 @@ import click
   exists=True, dir_okay=False, path_type=Path,
 ))
 @click.option('--xkey', default='data/X')
-@click.option('--xkey', default='data/Y')
+@click.option('--ykey', default='data/Y')
 @click.option('--tkey',
               help='Computed using tsne params.')
 @click.option('-D', '--dry-run',
