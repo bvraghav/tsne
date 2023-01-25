@@ -15,7 +15,7 @@ CONDA_ROOT		:= ${HOME}/miniconda3
 conda-env-name		 = $(shell	\
   cat ${CONDA_YML}			\
   | sed '/^name/!d'			\
-  | awk -F ': ' '{print $2}'		\
+  | awk -F ': ' '{print $$2}'		\
 )
 
 conda-activate		 = source ${CONDA_ROOT}/bin/activate ${1}
@@ -64,4 +64,4 @@ has-env :
 conda-env-name :
 	cat ${CONDA_YML}		\
 	| sed '/^name/!d'		\
-	| awk -F ': ' '{print $2}'	\
+	| awk -F ': ' '{print $$2}'	\
