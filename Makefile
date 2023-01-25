@@ -54,7 +54,8 @@ endif
 	    --n-steps		${N_STEPS}	 	\
 	    --random-seed	${RANDOM_SEED}	 	\
 	    $(and ${FORCE_WRITE},--force-write)	 	\
-
+	    ${TSNE_OUT_HDF5}				\
+	    ${TSNE_IN_HDF5}				\
 
 
 
