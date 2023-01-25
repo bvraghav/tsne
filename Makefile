@@ -54,3 +54,8 @@ endif
 	    --n-steps		${N_STEPS}	 	\
 	    --random-seed	${RANDOM_SEED}	 	\
 	    $(and ${FORCE_WRITE},--force-write)	 	\
+
+has-env :
+	$(base-conda) env list 		\
+	| grep $(conda-env-name)	\
+	|| echo				\
