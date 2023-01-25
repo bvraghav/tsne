@@ -105,6 +105,12 @@ def main(
       random_seed,
     )
 
+  if random_seed < 0 :
+    from time import time_ns
+    get_time_ns = lambda: f'{time_ns()}'[-9:]
+
+    random_seed = get_time_ns()
+
   ## Log args
   ## --------------------------------------------------
   log_args(
@@ -156,6 +162,14 @@ def main(
   ])
 
   storage.save(X_embedded)
+
+def load_data(hdf5, xkey, ykey) :
+  with h5.File(
+      hdf5, 'r', libver='latest', swmr=True
+  ) as H :
+    X, Y = H[xkey][:], H[ykey][:]
+
+  return X, Y
 
 def get_tkey(p, nn, lr, N, R,) :
   return f'tsne/p:{p}_lr:{lr}_N:{N}_nn:{nn}_R:{R:08X}'
