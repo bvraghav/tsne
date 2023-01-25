@@ -2,8 +2,7 @@ SHELL			:= /usr/bin/zsh
 
 
 
-include $(or $(realpath config.Makefile), 		\
-	  $(realpath sample-config.Makefile))
+include config.Makefile
 
 
 
