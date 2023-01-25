@@ -20,7 +20,7 @@ conda-env-name		 = $(shell	\
 
 conda-activate		 = source ${CONDA_ROOT}/bin/activate ${1}
 conda-activate-base	 = $(call conda-activate,base)
-conda-activate-env	 = $(call conda-activate,$(cond-env-name))
+conda-activate-env	 = $(call conda-activate,$(call cond-env-name))
 
 base-conda		 = $(conda-activate-base) ; conda
 
@@ -35,8 +35,8 @@ has-env			 = $(shell 	\
 
 default: run-tsne
 
-create-conda-env :
-	$(base-conda) env create -f ${CONDA_YML} -n $(conda-env-name)
+create-conda-env : ${CONDA_YML}
+	$(base-conda) env create -f ${<} -n $(conda-env-name)
 
 run-tsne :
 ifeq ($(has-env),)
