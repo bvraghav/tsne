@@ -33,6 +33,8 @@ has-env			 = $(shell 	\
   || echo				\
 )
 
+default: run-tsne
+
 create-conda-env :
 	$(base-conda) env create -f ${CONDA_YML}
 
