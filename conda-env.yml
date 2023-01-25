@@ -1,5 +1,6 @@
 name: tsne
 channels:
+  - conda-forge
   - defaults
 dependencies:
   - _libgcc_mutex=0.1=main
@@ -16,13 +17,14 @@ dependencies:
   - bleach=4.1.0=pyhd3eb1b0_0
   - brotlipy=0.7.0=py310h7f8727e_1002
   - bzip2=1.0.8=h7b6447c_0
-  - ca-certificates=2023.01.10=h06a4308_0
-  - certifi=2022.12.7=py310h06a4308_0
+  - ca-certificates=2022.12.7=ha878542_0
+  - certifi=2022.12.7=pyhd8ed1ab_0
   - cffi=1.15.1=py310h5eee18b_3
   - charset-normalizer=2.0.4=pyhd3eb1b0_0
   - click=8.0.4=py310h06a4308_0
   - comm=0.1.2=py310h06a4308_0
   - cryptography=38.0.4=py310h9ce1e76_0
+  - cudatoolkit=10.2.89=h713d32c_10
   - dbus=1.13.18=hb2f20db_0
   - debugpy=1.5.1=py310h295c915_0
   - decorator=5.1.1=pyhd3eb1b0_0
@@ -33,6 +35,7 @@ dependencies:
   - flit-core=3.6.0=pyhd3eb1b0_0
   - fontconfig=2.14.1=h52c9d5c_1
   - freetype=2.12.1=h4a9f257_0
+  - gflags=2.2.2=he1b5a44_1004
   - giflib=5.2.1=h7b6447c_0
   - glib=2.69.1=he621ea3_2
   - gst-plugins-base=1.14.0=h8213a91_2
@@ -63,15 +66,18 @@ dependencies:
   - krb5=1.19.4=h568e23c_0
   - ld_impl_linux-64=2.38=h1181459_1
   - lerc=3.0=h295c915_0
+  - libblas=3.9.0=12_linux64_mkl
   - libclang=10.0.1=default_hb85057a_2
   - libdeflate=1.8=h7f8727e_5
   - libedit=3.1.20221030=h5eee18b_0
   - libevent=2.1.12=h8f2d780_0
+  - libfaiss=1.7.1=cuda102hd37495c_1_cuda
   - libffi=3.4.2=h6a678d5_6
   - libgcc-ng=11.2.0=h1234567_1
   - libgfortran-ng=11.2.0=h00389a5_1
   - libgfortran5=11.2.0=h1234567_1
   - libgomp=11.2.0=h1234567_1
+  - liblapack=3.9.0=12_linux64_mkl
   - libllvm10=10.0.1=hbcb73fb_5
   - libpng=1.6.37=hbc83047_0
   - libpq=12.9=h16c4e8d_3
@@ -131,6 +137,7 @@ dependencies:
   - python=3.10.9=h7a1cb2a_0
   - python-dateutil=2.8.2=pyhd3eb1b0_0
   - python-fastjsonschema=2.16.2=py310h06a4308_0
+  - python_abi=3.10=2_cp310
   - pytz=2022.7=py310h06a4308_0
   - pyzmq=23.2.0=py310h6a678d5_0
   - qt-main=5.15.2=h327a75a_7
@@ -155,6 +162,7 @@ dependencies:
   - tomli=2.0.1=py310h06a4308_0
   - tornado=6.2=py310h5eee18b_0
   - traitlets=5.7.1=py310h06a4308_0
+  - tsnecuda=3.0.1=cuda102py310hb5b6a74_1
   - typing-extensions=4.4.0=py310h06a4308_0
   - typing_extensions=4.4.0=py310h06a4308_0
   - tzdata=2022g=h04d1e81_0
