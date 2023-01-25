@@ -59,3 +59,9 @@ has-env :
 	$(base-conda) env list 		\
 	| grep $(conda-env-name)	\
 	|| echo				\
+
+
+conda-env-name :
+	cat ${CONDA_YML}		\
+	| sed '/^name/!d'		\
+	| awk -F ': ' '{print $2}'	\
