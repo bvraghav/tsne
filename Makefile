@@ -20,7 +20,7 @@ conda-env-name		 = $(shell	\
 
 conda-activate		 = source ${CONDA_ROOT}/bin/activate ${1}
 conda-activate-base	 = $(call conda-activate,base)
-conda-activate-env	 = $(call conda-activate,$(call cond-env-name))
+conda-activate-env	 = $(call conda-activate,$(conda-env-name))
 
 base-conda		 = $(conda-activate-base) ; conda
 
