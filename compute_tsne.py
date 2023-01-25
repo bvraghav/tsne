@@ -1,6 +1,5 @@
 import logging as LG
 from tsnecuda import TSNE
-# import torch
 import random
 from pathlib import Path
 import json
@@ -9,6 +8,14 @@ import h5py as h5
 import numpy as np
 import click
 
+## Not for torch inclusion in future.
+## -----------------------------------
+## conda install pytorch torchvision \
+##               torchaudio          \
+##               pytorch-cuda=11.6   \
+##               -c pytorch -c nvidia
+## -----------------------------------
+# import torch
 
 # X = data
 # p, lr = 64,300
