@@ -143,14 +143,6 @@ def main(
 
   storage = _Storage(out_hdf5, tkey, force_write)
 
-  TSNE(
-    perplexity    = perplexity,
-    num_neighbors = num_neighbors,
-    learning_rate = learning_rate,
-    n_iter        = n_iter,
-    random_seed   = random_seed,
-  )
-
   get_steps = {
     'arithmetic': get_AP_steps,
     'geometric': get_GP_steps,
@@ -158,6 +150,15 @@ def main(
   steps = get_steps(n_steps, n_iter)
   lg.info(f'Steps: {steps}')
   lg.info(f'')
+
+  _ = TSNE(
+    perplexity    = perplexity,
+    num_neighbors = num_neighbors,
+    learning_rate = learning_rate,
+    n_iter        = n_iter,
+    random_seed   = random_seed,
+  )
+  lg.info(f'Creating TSNE instance ...SUCCESS')
 
   if dry_run :
     lg.info('Dry run complete. Exiting.')
@@ -195,10 +196,15 @@ def get_GP_steps(n_steps, n_iter) :
   return steps
 
 def load_data(hdf5, xkey, ykey) :
+  lg = LG.getLogger(__name__)
+
   with h5.File(
       hdf5, 'r', libver='latest', swmr=True
   ) as H :
     X, Y = H[xkey][:], H[ykey][:]
+
+  lg.info(f'X: {X.shape, X.dtype}')
+  lg.info(f'Y: {Y.shape, Y.dtype}')
 
   return X, Y
 
@@ -234,9 +240,13 @@ class _Storage :
 
   @property
   def H(self) :
+    lg = LG.getLogger(__name__)
+
     if self._H is None :
       self._H = h5.File(self.hpath, 'a', libver='latest')
       self._H.swmr_mode = True
+
+      lg.info(f'Opened {self.hpath} in A/SWMR mode.')
 
     return self._H
 
@@ -245,7 +255,11 @@ class _Storage :
       self._H.close()
 
   def save(self, data) :
+    lg = LG.getLogger(__name__)
+
     self.H.create_dataset(self.tkey, data=data)
+
+    lg.info(f'Created Dataset: {self.tkey}')
 
 if __name__ == '__main__' :
 
