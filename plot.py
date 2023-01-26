@@ -95,16 +95,16 @@ def read_h5(
   with h5.File(hpath, 'r', swmr=True) as H :
     X = H[xkey]
     Y = H[ykey]
-    X = X.transpose(1,0,2)
-    Y = np.broadcast_to(Y, [*X.shape[:2],1])
-    if X.shape[0] != Y.shape[0]:
+    if X.shape[1] != Y.shape[0]:
       raise RuntimeError(
-        f'X:shape (NTD):{X.shape} '
+        f'X:shape (TND):{X.shape} '
         f'is different than '
         f'Y:shape (N):{Y.shape} '
         f'for value of N'
       )
-    data = np.concatenate([X[:], Y[:]], -1)
+    X = X[:].transpose(1,0,2)
+    Y = np.broadcast_to(Y[:], [*X.shape[:2],1])
+    data = np.concatenate([X, Y], -1)
 
     ynames = H[ynamekey].asstr()[:].tolist()
     ycolours = H[ycolourkey].asstr()[:].tolist()
