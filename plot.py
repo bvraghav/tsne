@@ -5,6 +5,7 @@ from pathlib import Path
 import numpy as np
 import click
 from tqdm import tqdm
+import uuid
 
 
 @click.command(context_settings = dict(
