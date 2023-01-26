@@ -44,6 +44,20 @@ def main(
 ) :
   lg = LG.getLogger(__name__)
 
+  log_args(
+    data             = data,            
+    impath           = impath,          
+    xkey             = xkey,            
+    ykey             = ykey,            
+    ynamekey         = ynamekey,        
+    ycolourkey       = ycolourkey,      
+    width            = width,           
+    height           = height,          
+    step_progression = step_progression,
+    n_steps          = n_steps,
+    n_iter           = n_iter, 
+  )
+
   data, ynames, ycolours = read_h5(
     data,
     xkey,
@@ -145,6 +159,14 @@ def plot_and_save(
 
   # Plot
   fig.plot(data, com='plot "-" u 1:2:3 w p palette')
+
+def log_args(**kwargs) :
+  lg = LG.getLogger(__name__)
+
+  lg.info(f'CLI Args:')
+
+  for (k, v) in kwargs.items() :
+    lg.info(f'{k}: {v}')
 
 if __name__ == '__main__' :
 
