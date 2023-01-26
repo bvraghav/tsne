@@ -103,7 +103,10 @@ def read_h5(
         f'for value of N'
       )
     X = X[:].transpose(1,0,2)
-    Y = np.broadcast_to(Y[:], [*X.shape[:2],1])
+    Y = np.broadcast_to(
+      Y[:][:,,None,None],
+      [*X.shape[:2],1]
+    )
     data = np.concatenate([X, Y], -1)
 
     ynames = H[ynamekey].asstr()[:].tolist()
