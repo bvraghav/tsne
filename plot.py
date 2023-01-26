@@ -80,7 +80,7 @@ def main(
     imname = impath/f'{xkey}_step:{step}'
 
     plot_and_save(
-      H, W, imname, title, ynames, ycolours, data
+      H, W, imname, title, ynames, ycolours, data[:,step,:]
     )
     lg.info(f'Written to {imname}')
 
@@ -95,14 +95,16 @@ def read_h5(
   with h5.File(hpath, 'r', swmr=True) as H :
     X = H[xkey]
     Y = H[ykey]
+    X = X.transpose(1,0,2)
+    Y = np.broadcast_to(Y, [*X.shape[:2],1])
     if X.shape[0] != Y.shape[0]:
       raise RuntimeError(
-        f'X:shape:{X.shape} '
+        f'X:shape (NTD):{X.shape} '
         f'is different than '
-        f'Y:shape:{Y.shape} '
-        f'on 0-th dimension'
+        f'Y:shape (N):{Y.shape} '
+        f'for value of N'
       )
-    data = np.concatenate([X[:], Y[:]],1)
+    data = np.concatenate([X[:], Y[:]], -1)
 
     ynames = H[ynamekey].asstr()[:].tolist()
     ycolours = H[ycolourkey].asstr()[:].tolist()
