@@ -163,14 +163,15 @@ def plot_and_save(
     f'"{yname}" {i}' for i,yname in enumerate(ynames)
   )
   fig.a(f'set cbtics ({_names})')
+  lg.info(f'Set CBTICS ...success')
 
   # PALETTE
-  fig.a(f'set cbrange [-0.5:{len(ycolours)-1}.5]')
+  fig.a(f'set palette maxcolors {len(ycolours)}')
   _colours = ','.join(
     f'{i} "{ycolour}"'
     for i,ycolour in enumerate(ycolours)
   )
-  fig.a(f'set cbtics ({_colours})')
+  fig.a(f'set palette defined ({_colours})')
 
   # Plot
   fig.a(f'plot "{ftmp}" u 1:2:3 w p palette')
