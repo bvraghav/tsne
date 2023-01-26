@@ -59,7 +59,7 @@ def main(
     n_iter           = n_iter, 
   )
 
-  data, ynames, ycolours = read_h5(
+  X0, X1, Y, ynames, ycolours = read_h5(
     data,
     xkey,
     ykey,
@@ -86,7 +86,7 @@ def main(
 
     plot_and_save(
       H, W, imname, title, ynames, ycolours,
-      data[:,i,:].transpose().tolist()
+      [X0[i], X1[i], Y]
     )
     lg.info(f'Written to {imname}')
 
@@ -108,12 +108,9 @@ def read_h5(
         f'Y:shape (N):{Y.shape} '
         f'for value of N'
       )
-    X = X[:].transpose(1,0,2)
-    Y = np.broadcast_to(
-      Y[:][:,None,None],
-      [*X.shape[:2],1]
-    )
-    data = np.concatenate([X, Y], -1)
+    X0 = X[:,:,0]
+    X1 = X[:,:,1]
+    Y = Y[:]
 
     ynames = H[ynamekey].asstr()[:].tolist()
     ycolours = H[ycolourkey].asstr()[:].tolist()
@@ -124,7 +121,7 @@ def read_h5(
         f'ycolours:len:{len(ycolours)} '
       )
 
-  return data, ynames, ycolours
+  return X0, X1, Y, ynames, ycolours
 
 def get_AP_steps(n_steps, n_iter) :
   steps = list(map(
