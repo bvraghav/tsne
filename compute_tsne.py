@@ -148,10 +148,10 @@ def main(
     lg.info('Dry run complete. Exiting.')
     raise SystemExit(0)
 
-  steps = map(
+  steps = list(map(
     lambda n : int(((1+n)/n_steps) * n_iter),
     range(n_steps)
-  )
+  ))
 
   X_embedded = np.stack([
     TSNE(
