@@ -16,8 +16,20 @@ import click
 @click.option('-R', '--random-seed', type=int,
               default=0,
               help='Negative value to use nanoseconds')
-def main(**kwargs) :
-  print (get_tkey(**kwargs))
+def main(
+    perplexity,
+    num_neighbors,
+    learning_rate,
+    n_iter,
+    random_seed,
+) :
+  print(get_tkey(
+    perplexity,
+    num_neighbors,
+    learning_rate,
+    n_iter,
+    random_seed,
+  ))
 
 def get_tkey(p, nn, lr, N, R,) :
   return f'tsne/p:{p}_lr:{lr}_N:{N}_nn:{nn}_R:{R:08X}'
