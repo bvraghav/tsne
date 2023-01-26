@@ -76,7 +76,9 @@ def main(
 
   W, H = width, height
 
-  (impath/xkey).parent.mkdir(exist_ok=True, parents=True)
+  prefix = (impath/xkey).parent
+  prefix.mkdir(exist_ok=True, parents=True)
+  lg.info(f'Ensured exists prefix:{prefix}')
 
   for i, step in enumerate(steps) :
     title = f'{xkey} step:{step}/{steps}'
