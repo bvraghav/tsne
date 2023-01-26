@@ -156,6 +156,7 @@ def main(
   }.get(step_progression, get_GP_steps)
   steps = get_steps(n_steps, n_iter)
   lg.info(f'Steps: {steps}')
+  lg.info(f'')
 
   if dry_run :
     lg.info('Dry run complete. Exiting.')
