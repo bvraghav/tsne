@@ -217,7 +217,7 @@ class _Storage :
       self._H.close()
 
   def save(self, data) :
-    self.H.create_dataset(self.tkey, data)
+    self.H.create_dataset(self.tkey, data=data)
 
 if __name__ == '__main__' :
 
