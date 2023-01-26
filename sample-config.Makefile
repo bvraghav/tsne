@@ -2,6 +2,8 @@
 XKEY			:= data/X
 YKEY			:= data/Y
 TKEY			:= 
+YNAMEKEY		:= all/emotions
+YCOLOURKEY		:= all/emotions_colors
 DRY_RUN			:= 
 PERPLEXITY		:= 64    
 NUM_NEIGHBOURS		:= 64
