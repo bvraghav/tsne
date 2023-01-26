@@ -86,7 +86,7 @@ def main(
 
     plot_and_save(
       H, W, imname, title, ynames, ycolours,
-      [X0[i], X1[i], Y]
+      [X0[i].tolist(), X1[i].tolist(), Y.tolist()]
     )
     lg.info(f'Written to {imname}')
 
