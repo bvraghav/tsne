@@ -145,7 +145,12 @@ def plot_and_save(
     H, W, imname, title, ynames, ycolours, data
 ) :
 
+  _u = f'{uuid.uuid4()}'[:8]
+  ftmp = f'/tmp/{_u}.dat'
+
   fig = gp()
+  fig.save(data, filename=ftmp)
+
   fig.a(f'set term pngcairo size {W},{H}')
   fig.a(f'set output {imname}')
   fig.a(f'set title "{title}"')
@@ -166,7 +171,7 @@ def plot_and_save(
   fig.a(f'set cbtics ({_colours})')
 
   # Plot
-  fig.plot(data, com='plot "-" u 1:2:3 w p palette')
+  fig.a(f'plot "{ftmp}" u 1:2:3 w p palette')
 
   fig.quit()
 
