@@ -75,12 +75,13 @@ def main(
 
   W, H = width, height
 
-  for step in tqdm(steps) :
+  for i, step in tqdm(enumerate(steps)) :
     title = f'{xkey} step:{step}/{steps}'
     imname = impath/f'{xkey}_step:{step}'
 
     plot_and_save(
-      H, W, imname, title, ynames, ycolours, data[:,step,:]
+      H, W, imname, title, ynames, ycolours,
+      data[:,i,:]
     )
     lg.info(f'Written to {imname}')
 
