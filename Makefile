@@ -33,6 +33,15 @@ has-env			 = $(shell 	\
   || echo				\
 )
 
+tkey			 = $(shell		\
+  $(python) -m get_tkey				\
+    --perplexity	${PERPLEXITY}	 	\
+    --num-neighbours	${NUM_NEIGHBOURS}	\
+    --learning-rate	${LEARNING_RATE} 	\
+    --n-iter		${N_ITER}	 	\
+    --random-seed	${RANDOM_SEED}	 	\
+)
+
 default: run-tsne
 
 create-conda-env : ${CONDA_YML}
@@ -45,7 +54,7 @@ endif
 	$(python) -m compute_tsne			\
 	    --xkey		${XKEY}			\
 	    --ykey		${YKEY}			\
-	    $(and ${TKEY},--tkey ${TKEY})		\
+	    --tkey		$(or ${TKEY},$(tkey))	\
 	    $(and ${DRY_RUN},--dry-run)		 	\
 	    --perplexity	${PERPLEXITY}	 	\
 	    --num-neighbours	${NUM_NEIGHBOURS}	\
@@ -63,7 +72,7 @@ ifeq ($(has-env),)
 	$(MAKE) create-conda-env
 endif
 	$(python) -m plot				\
-	    --xkey		${TKEY}			\
+	    --xkey		$(or ${TKEY},$(tkey))	\
 	    --ykey		${YKEY}			\
 	    --ynamekey		${YNAMEKEY}		\
 	    --ycolourkey	${YCOLOURKEY}		\
