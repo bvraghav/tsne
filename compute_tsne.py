@@ -101,6 +101,7 @@ def main(
   '''
 
   lg = LG.getLogger(__name__)
+  lg.info(f'Starting main')
 
   ## Sanitise args
   ## --------------------------------------------------
