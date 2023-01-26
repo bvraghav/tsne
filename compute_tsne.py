@@ -70,7 +70,6 @@ from tqdm import tqdm
               help='Negative value to use nanoseconds')
 @click.option('-f', '--force-write', is_flag=True,
               default=False)
-
 def main(
     out_hdf5,
     hdf5,
@@ -262,6 +261,12 @@ class _Storage :
     self.H.create_dataset(self.tkey, data=data)
 
     lg.info(f'Created Dataset: {self.tkey}')
+
+# def compute_tsne(*args, **kwargs) :
+#   # Needs a wrapper
+#   # https://stackoverflow.com/a/48727139
+#   return call_click_command(main, *args, **kwargs)
+
 
 if __name__ == '__main__' :
 
