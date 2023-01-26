@@ -147,12 +147,14 @@ def get_GP_steps(n_steps, n_iter) :
 def plot_and_save(
     H, W, imname, title, ynames, ycolours, data
 ) :
+  lg = LG.getLogger(__name__)
 
   _u = f'{uuid.uuid4()}'[:8]
   ftmp = f'/tmp/{_u}.dat'
 
   fig = gp()
   fig.save(data, filename=ftmp)
+  lg.info(f'Saved tmp data:{ftmp}')
 
   fig.a(f'set term pngcairo size {W},{H}')
   fig.a(f'set output {imname}')
