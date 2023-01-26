@@ -78,7 +78,7 @@ def read_h5(
     ycolourkey,
 ) :
   hpath = data
-  with h5.File(hpath, 'r', swmr_mode=True) as H :
+  with h5.File(hpath, 'r', swmr=True) as H :
     X = H[xkey]
     Y = H[ykey]
     if X.shape[0] != Y.shape[0]:
