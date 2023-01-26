@@ -122,19 +122,20 @@ def main(
   ## Log args
   ## --------------------------------------------------
   log_args(
-    out_hdf5      = out_hdf5,
-    hdf5          = hdf5,
-    xkey          = xkey,
-    ykey          = ykey,
-    tkey          = tkey,
-    dry_run       = dry_run,
-    perplexity    = perplexity,
-    num_neighbors = num_neighbors,
-    learning_rate = learning_rate,
-    n_iter        = n_iter,
-    n_steps       = n_steps,
-    random_seed   = random_seed,
-    force_write   = force_write,
+    out_hdf5         = out_hdf5,
+    hdf5             = hdf5,
+    xkey             = xkey,
+    ykey             = ykey,
+    tkey             = tkey,
+    dry_run          = dry_run,
+    perplexity       = perplexity,
+    num_neighbors    = num_neighbors,
+    learning_rate    = learning_rate,
+    n_iter           = n_iter,
+    n_steps          = n_steps,
+    step_progression = step_progression,
+    random_seed      = random_seed,
+    force_write      = force_write,
   )
 
   X, Y = load_data(hdf5, xkey, ykey)
@@ -149,16 +150,16 @@ def main(
     random_seed   = random_seed,
   )
 
-  if dry_run :
-    lg.info('Dry run complete. Exiting.')
-    raise SystemExit(0)
-
   get_steps = {
     'arithmetic': get_AP_steps,
     'geometric': get_GP_steps,
   }.get(step_progression, get_GP_steps)
   steps = get_steps(n_steps, n_iter)
   lg.info(f'Steps: {steps}')
+
+  if dry_run :
+    lg.info('Dry run complete. Exiting.')
+    raise SystemExit(0)
 
   X_embedded = np.stack([
     TSNE(
