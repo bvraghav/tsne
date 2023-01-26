@@ -75,6 +75,8 @@ def main(
 
   W, H = width, height
 
+  (impath/xkey).parent.mkdir(exist_ok=True, parents=True)
+
   for i, step in tqdm(enumerate(steps)) :
     title = f'{xkey} step:{step}/{steps}'
     imname = impath/f'{xkey}_step:{step}.png'
