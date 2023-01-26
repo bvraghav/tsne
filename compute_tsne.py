@@ -202,7 +202,7 @@ class _Storage :
       del self.H[self.tkey]
 
   @property
-  def H(self, H) :
+  def H(self) :
     if self._H is None :
       self._H = h5.File(self.hpath, 'a', libver='latest')
       self._H.swmr_mode = True
