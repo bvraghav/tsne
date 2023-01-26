@@ -148,8 +148,10 @@ def main(
     lg.info('Dry run complete. Exiting.')
     raise SystemExit(0)
 
+  a = 1
+  b = n_steps/a
   steps = list(map(
-    lambda n : int(((1+n)/n_steps) * n_iter),
+    lambda n : a * (b**(n/(n_steps-1))),
     range(n_steps)
   ))
 
