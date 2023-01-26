@@ -158,6 +158,7 @@ def main(
     n_iter        = n_iter,
     random_seed   = random_seed,
   )
+  LG.getLogger().setLevel(LG.INFO)
   lg.info(f'Creating TSNE instance ...SUCCESS')
 
   if dry_run :
@@ -174,6 +175,7 @@ def main(
     ).fit_transform(X)
     for _n in tqdm(steps)
   ])
+  LG.getLogger().setLevel(LG.INFO)
 
   storage.save(X_embedded)
 
