@@ -104,7 +104,7 @@ def read_h5(
       )
     X = X[:].transpose(1,0,2)
     Y = np.broadcast_to(
-      Y[:][:,,None,None],
+      Y[:][:,None,None],
       [*X.shape[:2],1]
     )
     data = np.concatenate([X, Y], -1)
