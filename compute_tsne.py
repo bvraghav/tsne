@@ -7,6 +7,7 @@ import functools as Ft
 import h5py as h5
 import numpy as np
 import click
+from tqdm import tqdm
 
 ## Not for torch inclusion in future.
 ## -----------------------------------
@@ -160,7 +161,7 @@ def main(
       n_iter        = _n,
       random_seed   = random_seed,
     ).fit_transform(X)
-    for _n in steps
+    for _n in tqdm(steps)
   ])
 
   storage.save(X_embedded)
