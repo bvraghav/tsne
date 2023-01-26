@@ -26,10 +26,8 @@ from tqdm import tqdm
 @click.option('--step-progression', type=click.Choice([
   'arithmetic', 'geometric'
 ]), default='geometric')
-@click.option('--n-steps', type=int,
-              required=True,)
-@click.option('--n-iter', type=int,
-              required=True)
+@click.option('--n-steps', type=int, required=True,)
+@click.option('--n-iter', type=int, required=True,)
 
 def main(
     data,

@@ -58,6 +58,22 @@ endif
 	    ${TSNE_OUT_HDF5}				\
 	    ${TSNE_IN_HDF5}				\
 
+plots :
+ifeq ($(has-env),)
+	$(MAKE) create-conda-env
+endif
+	$(python) -m plot				\
+	    --xkey		${TKEY}			\
+	    --ykey		${YKEY}			\
+	    --ynamekey		${YNAMEKEY}		\
+	    --ycolourkey	${YCOLOURKEY}		\
+	    --n-iter		${N_ITER}	 	\
+	    --n-steps		${N_STEPS}	 	\
+	    --step-progression	${STEP_PROGRESSION} 	\
+	    --width		${WIDTH}	 	\
+	    --height		${HEIGHT}	 	\
+	    ${TSNE_OUT_HDF5}				\
+	    ${TSNE_IMPATH}				\
 
 
 

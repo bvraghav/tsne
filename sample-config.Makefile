@@ -15,3 +15,10 @@ FORCE_WRITE		:=
 # Input and output hdf5 files may be the same
 TSNE_OUT_HDF5		:=
 TSNE_IN_HDF5		:=
+
+# Path to save TSNE plots
+TSNE_IMPATH		:=
+
+# TSNE plot image size
+WIDTH			:= 1600
+HEIGHT			:= 900
