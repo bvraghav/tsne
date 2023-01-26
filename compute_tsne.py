@@ -61,6 +61,10 @@ from tqdm import tqdm
 @click.option('-N', '--n-iter', type=int,
               default=2048)
 @click.option('-n', '--n-steps', type=int, default=32)
+@click.option('-S', '--step-progression',
+              type=click.Choice([
+                'arithmetic', 'geometric'
+              ]), default='arithmetic')
 @click.option('-R', '--random-seed', type=int,
               default=0,
               help='Negative value to use nanoseconds')
@@ -81,6 +85,7 @@ def main(
     learning_rate,
     n_iter,
     n_steps,
+    step_progression,
     random_seed,
     force_write,
 ) :
@@ -148,12 +153,12 @@ def main(
     lg.info('Dry run complete. Exiting.')
     raise SystemExit(0)
 
-  a = 1
-  b = n_steps/a
-  steps = list(map(
-    lambda n : a * (b**(n/(n_steps-1))),
-    range(n_steps)
-  ))
+  get_steps = {
+    'arithmetic': get_AP_steps,
+    'geometric': get_GP_steps,
+  }.get(step_progression, get_GP_steps)
+  steps = get_steps(n_steps, n_iter)
+  lg.info(f'Steps: {steps}')
 
   X_embedded = np.stack([
     TSNE(
@@ -167,6 +172,24 @@ def main(
   ])
 
   storage.save(X_embedded)
+
+def get_AP_steps(n_steps, n_iter) :
+  steps = list(map(
+    lambda n : int((1+n)/n_steps * (n_iter)),
+    range(n_steps)
+  ))
+
+  return steps
+
+def get_GP_steps(n_steps, n_iter) :
+  a = 1
+  b = n_iter/a
+  steps = list(map(
+    lambda n : int(a * (b**(n/(n_steps-1)))),
+    range(n_steps)
+  ))
+
+  return steps
 
 def load_data(hdf5, xkey, ykey) :
   with h5.File(

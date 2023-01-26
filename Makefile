@@ -52,6 +52,7 @@ endif
 	    --learning-rate	${LEARNING_RATE} 	\
 	    --n-iter		${N_ITER}	 	\
 	    --n-steps		${N_STEPS}	 	\
+	    --step-progression	${STEP_PROGRESSION} 	\
 	    --random-seed	${RANDOM_SEED}	 	\
 	    $(and ${FORCE_WRITE},--force-write)	 	\
 	    ${TSNE_OUT_HDF5}				\
