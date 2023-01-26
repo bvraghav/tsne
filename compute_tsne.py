@@ -94,6 +94,8 @@ def main(
 
   '''
 
+  lg = LG.getLogger(__name__)
+
   ## Sanitise args
   ## --------------------------------------------------
   if tkey is None :
@@ -152,11 +154,11 @@ def main(
 
   X_embedded = np.stack([
     TSNE(
-      perplexity=p,
-      num_neighbors=nn,
-      learning_rate=lr, 
-      n_iter=_n,
-      random_seed=R,
+      perplexity    = perplexity,
+      num_neighbors = num_neighbors,
+      learning_rate = learning_rate,
+      n_iter        = _n,
+      random_seed   = random_seed,
     ).fit_transform(X)
     for _n in steps
   ])
