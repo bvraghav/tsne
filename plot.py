@@ -77,7 +77,7 @@ def main(
 
   for i, step in tqdm(enumerate(steps)) :
     title = f'{xkey} step:{step}/{steps}'
-    imname = impath/f'{xkey}_step:{step}'
+    imname = impath/f'{xkey}_step:{step}.png'
 
     plot_and_save(
       H, W, imname, title, ynames, ycolours,
@@ -165,6 +165,8 @@ def plot_and_save(
 
   # Plot
   fig.plot(data, com='plot "-" u 1:2:3 w p palette')
+
+  fig.quit()
 
 def log_args(**kwargs) :
   lg = LG.getLogger(__name__)
