@@ -189,9 +189,9 @@ def get_AP_steps(n_steps, n_iter) :
 
 def get_GP_steps(n_steps, n_iter) :
   a = 1
-  b = n_iter/a
+  b = (n_iter/a)**(1/n_steps)
   steps = list(map(
-    lambda n : int(a * (b**(n/(n_steps-1)))),
+    lambda n : int(a * (b**(1+n))),
     range(n_steps)
   ))
 
