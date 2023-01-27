@@ -150,8 +150,8 @@ def plot_and_save(
   ftmp = f'/tmp/{_u}.dat'
 
   fig = gp()
-  fig.save(data, filename=ftmp)
-  lg.info(f'Saved tmp data:{ftmp}')
+  # fig.save(data, filename=ftmp)
+  # lg.info(f'Saved tmp data:{ftmp}')
 
   fig.a(f'set term pngcairo size {W},{H}')
   fig.a(f'set output "{imname}"')
@@ -177,8 +177,13 @@ def plot_and_save(
   lg.info(f'Done')
 
   # Plot
-  lg.info(f'plot "{ftmp}" u 1:2:3 w p palette')
-  fig.a(f'plot "{ftmp}" u 1:2:3 w p palette')
+  # lg.info(f'plot "{ftmp}" u 1:2:3 w p palette')
+  # fig.a(f'plot "{ftmp}" u 1:2:3 w p palette')
+  # lg.info(f'...done')
+
+  # Plot
+  lg.info(f'plot "-" u 1:2:3 w p palette')
+  fig.plot(data, com='plot "-" u 1:2:3 w p palette')
   lg.info(f'...done')
 
   time.sleep(1)
