@@ -67,7 +67,7 @@ def main(
     ycolourkey,
   )
   ynames = [
-    yname.replace('_', ' L').capitalize()
+    yname.replace('_', ' L').title()
     for yname in ynames
   ]
 
