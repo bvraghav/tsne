@@ -162,8 +162,9 @@ def plot_and_save(
   _names = ','.join(
     f'"{yname}" {i}' for i,yname in enumerate(ynames)
   )
+  lg.info(f'set cbtics ({_names})')
   fig.a(f'set cbtics ({_names})')
-  lg.info(f'Set CBTICS ...success')
+  lg.info(f'...success')
 
   # PALETTE
   fig.a(f'set palette maxcolors {len(ycolours)}')
@@ -171,7 +172,9 @@ def plot_and_save(
     f'{i} "{ycolour}"'
     for i,ycolour in enumerate(ycolours)
   )
+  lg.info(f'set palette defined ({_colours})')
   fig.a(f'set palette defined ({_colours})')
+  lg.info(f'Done')
 
   # Plot
   fig.a(f'plot "{ftmp}" u 1:2:3 w p palette')
