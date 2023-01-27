@@ -154,7 +154,7 @@ def plot_and_save(
   lg.info(f'Saved tmp data:{ftmp}')
 
   fig.a(f'set term pngcairo size {W},{H}')
-  fig.a(f'set output {imname}')
+  fig.a(f'set output "{imname}"')
   fig.a(f'set title "{title}"')
 
   # CBTICS
