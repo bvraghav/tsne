@@ -66,6 +66,10 @@ def main(
     ynamekey,
     ycolourkey,
   )
+  ynames = [
+    yname.replace('_', ' L').capitalize()
+    for yname in ynames
+  ]
 
   get_steps = {
     'arithmetic': get_AP_steps,
@@ -81,7 +85,8 @@ def main(
   lg.info(f'Ensured exists prefix:{prefix}')
 
   for i, step in enumerate(steps) :
-    title = f'{xkey} step:{step}/{steps}'
+    _xkey = xkey.replace("_", " ")
+    title = f'{_xkey} step:{step}/{steps[-1]}'
     imname = impath/f'{xkey}_step:{step}.png'
 
     plot_and_save(
@@ -146,13 +151,7 @@ def plot_and_save(
 ) :
   lg = LG.getLogger(__name__)
 
-  _u = f'{uuid.uuid4()}'[:8]
-  ftmp = f'/tmp/{_u}.dat'
-
   fig = gp()
-  # fig.save(data, filename=ftmp)
-  # lg.info(f'Saved tmp data:{ftmp}')
-
   fig.a(f'set term pngcairo size {W},{H}')
   fig.a(f'set output "{imname}"')
   fig.a(f'set title "{title}"')
@@ -177,8 +176,8 @@ def plot_and_save(
   lg.info(f'Done')
 
   # Plot
-  lg.info(f'plot "-" u 1:2:3 w p palette')
-  fig.plot(data, com='plot "-" u 1:2:3 w p palette')
+  lg.info(f'plot "-" u 1:2:3 w p palette t ""')
+  fig.plot(data, com='plot "-" u 1:2:3 w p palette t ""')
   lg.info(f'...done')
 
   time.sleep(1)
