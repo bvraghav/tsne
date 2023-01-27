@@ -8,15 +8,13 @@ include config.Makefile
 
 
 
-CONDA_YML		:= conda-env.yml
-CONDA_ROOT		:= ${HOME}/miniconda3
 
 
-conda-env-name		 = $(shell	\
-  cat ${CONDA_YML}			\
-  | sed '/^name/!d'			\
-  | awk -F ': ' '{print $$2}'		\
-)
+conda-env-name		 = $(or ${CONDA_ENV},$(shell	\
+  cat ${CONDA_YML}					\
+  | sed '/^name/!d'					\
+  | awk -F ': ' '{print $$2}'				\
+))
 
 conda-activate		 = source ${CONDA_ROOT}/bin/activate ${1}
 conda-activate-base	 = $(call conda-activate,base)

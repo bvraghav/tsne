@@ -24,3 +24,7 @@ TSNE_IMPATH		:=
 # TSNE plot image size
 WIDTH			:= 1600
 HEIGHT			:= 900
+
+CONDA_ENV		:=
+CONDA_YML		:= conda-env.yml
+CONDA_ROOT		:= ${HOME}/miniconda3
