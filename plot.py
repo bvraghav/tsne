@@ -6,7 +6,7 @@ import numpy as np
 import click
 from tqdm import tqdm
 import uuid
-
+import time
 
 @click.command(context_settings = dict(
   show_default                  = True,
@@ -181,6 +181,7 @@ def plot_and_save(
   fig.a(f'plot "{ftmp}" u 1:2:3 w p palette')
   lg.info(f'...done')
 
+  time.sleep(1)
   fig.quit()
 
 def log_args(**kwargs) :
