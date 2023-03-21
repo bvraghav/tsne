@@ -2,6 +2,7 @@ SHELL			:= /usr/bin/zsh
 
 
 
+include sample-config.Makefile
 include config.Makefile
 
 
