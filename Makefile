@@ -1,9 +1,10 @@
 SHELL			:= /usr/bin/zsh
 
 
-
 include sample-config.Makefile
-include config.Makefile
+CONFIG-MK		:= config.Makefile
+$(info Including config: $(CONFIG-MK))
+include ${CONFIG-MK}
 
 
 
@@ -26,20 +27,20 @@ base-conda		 = $(conda-activate-base) ; conda
 conda			 = $(conda-activate-env); conda
 python			 = $(conda-activate-env); python
 
-has-env			 = $(shell 	\
-  $(base-conda) env list 		\
-  | grep $(conda-env-name) 		\
-  || echo				\
+has-env			 = $(shell 			\
+  $(base-conda) env list 				\
+  | grep $(conda-env-name) 				\
+  || echo						\
 )
 
-tkey			 = $(shell		\
-  $(python) -m get_tkey				\
-    --perplexity	${PERPLEXITY}	 	\
-    --num-neighbours	${NUM_NEIGHBOURS}	\
-    --learning-rate	${LEARNING_RATE} 	\
-    --n-iter		${N_ITER}	 	\
-    --random-seed	${RANDOM_SEED}	 	\
-)
+tkey			 = $(and $(has-env), $(shell	\
+  $(python) -m get_tkey					\
+    --perplexity	${PERPLEXITY}	 		\
+    --num-neighbours	${NUM_NEIGHBOURS}		\
+    --learning-rate	${LEARNING_RATE} 		\
+    --n-iter		${N_ITER}	 		\
+    --random-seed	${RANDOM_SEED}	 		\
+))
 
 default: run-tsne
 

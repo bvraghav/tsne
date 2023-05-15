@@ -11,22 +11,24 @@ configuration.
 ## Usage ##
 
 1. Compute TSNE embeddings as well as create
-   visualisation plots.
+   visualisation plots.  
    ```sh
    make all-tsne
    ```
-2. Only compute TSNE.
+
+2. Only compute TSNE.  
    ```sh
    make run-tsne
    ```
-3. Only plot precomputed TSNE.
+
+3. Only plot precomputed TSNE.  
    ```sh
    make plot-tsne
    ```
 
 ## Configuration ##
 
-Create `config.Makefile` and update as required, using,
+Create `config.Makefile` and update as required, using,  
 ```sh
 cp sample-config.Makefile config.Makefile 
 ```
@@ -34,6 +36,7 @@ cp sample-config.Makefile config.Makefile
 ### Input ###
 
 The input data is taken from `TSNE_IN_HDF5`, where
+
 - `XKEY` specifies path to the feature vectors of
   population with array shape `(N,D)`;
 - `YKEY` specifies corresponding labels (integers in
@@ -46,6 +49,7 @@ The input data is taken from `TSNE_IN_HDF5`, where
 ### Output ###
 
 The output data is stored into `TSNE_OUT_HDF5`, where
+
 - `TKEY` corresponds to the 2D TSNE-embeddings computed
   over `T` snapshots, bearing shape `(T,N,2)`.
   
@@ -86,12 +90,13 @@ refer to https://github.com/CannyLab/tsne-cuda
   `${HOME}/miniconda3`
 
 ## Prerequisites ##
-1. (mini) Conda : [Follow instructions
+1. (mini) Conda:  
+   [Follow instructions
    here.](https://conda.io/projects/conda/en/stable/user-guide/install/index.html
    "Miniconda installation.")
-2. [GNUPlot](http://www.gnuplot.info/ "GNUPlot") :
+2. [GNUPlot](http://www.gnuplot.info/ "GNUPlot") :  
    Optionally required if visualising. Should be available on your system package
-   repository. e.g. 
+   repository. e.g.   
    ```sh
    apt install gnuplot
    # OR
@@ -100,7 +105,7 @@ refer to https://github.com/CannyLab/tsne-cuda
 3. [GNU Make](https://www.gnu.org/software/make/ "GNU
    Make") : to automate computation and generating
    graphs. Should also be available on your system
-   package repository. e.g.
+   package repository. e.g.  
    ```sh
    apt install make
    # OR
